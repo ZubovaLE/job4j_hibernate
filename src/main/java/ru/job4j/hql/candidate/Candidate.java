@@ -36,6 +36,6 @@ public class Candidate {
 
     @Override
     public String toString() {
-        return String.format("Candidate: id=%d, name=%s, experience=%d, salary=%d", id, name, experience, salary);
+        return String.format("Candidate: id=%d, name=%s, experience=%d, salary=%f", id, name, experience, salary);
     }
 }
