@@ -18,5 +18,7 @@
         <mapping class="ru.job4j.config.Car"/>
         <mapping class="ru.job4j.hql.candidate.Candidate"/>
         <mapping class="ru.job4j.hql.student.Student"/>
+        <mapping class="ru.job4j.toone.User"/>
+        <mapping class="ru.job4j.toone.Role"/>
     </session-factory>
 </hibernate-configuration>
