@@ -20,5 +20,7 @@
         <mapping class="ru.job4j.hql.student.Student"/>
         <mapping class="ru.job4j.toone.User"/>
         <mapping class="ru.job4j.toone.Role"/>
+        <mapping class="ru.job4j.many.UserToMany"/>
+        <mapping class="ru.job4j.many.RoleToMany"/>
     </session-factory>
 </hibernate-configuration>

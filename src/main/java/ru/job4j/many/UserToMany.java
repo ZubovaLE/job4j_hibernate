@@ -7,18 +7,18 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "j_user")
+@Table(name = "user_to_many")
 @Getter
 @Setter
-public class User {
+public class UserToMany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    public static User of(String name) {
-        User user = new User();
+    public static UserToMany of(String name) {
+        UserToMany user = new UserToMany();
         user.name = name;
         return user;
     }
@@ -27,7 +27,7 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        UserToMany user = (UserToMany) o;
         return id == user.id;
     }
 

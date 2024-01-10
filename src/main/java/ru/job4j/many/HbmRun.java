@@ -15,10 +15,10 @@ public class HbmRun {
             Session session = sf.openSession();
             session.beginTransaction();
 
-            User one = User.of("Bob");
-            User two = User.of("Alex");
+            UserToMany one = UserToMany.of("Bob");
+            UserToMany two = UserToMany.of("Alex");
 
-            Role admin = Role.of("ADMIN");
+            RoleToMany admin = RoleToMany.of("ADMIN");
             admin.getUsers().add(one);
             admin.getUsers().add(two);
 

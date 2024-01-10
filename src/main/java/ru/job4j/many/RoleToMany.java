@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "j_role")
+@Table(name = "role_to_many")
 @Getter
 @Setter
-public class Role {
+public class RoleToMany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -20,10 +20,10 @@ public class Role {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<User> users = new ArrayList<>();
+    private List<UserToMany> users = new ArrayList<>();
 
-    public static Role of(String name) {
-        Role role = new Role();
+    public static RoleToMany of(String name) {
+        RoleToMany role = new RoleToMany();
         role.name = name;
         return role;
     }
@@ -32,7 +32,7 @@ public class Role {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
+        RoleToMany role = (RoleToMany) o;
         return id == role.id;
     }
 
