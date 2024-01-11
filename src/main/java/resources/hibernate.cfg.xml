@@ -15,12 +15,14 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
-        <mapping class="ru.job4j.config.Car"/>
+        <mapping class="ru.job4j.config.CarExample"/>
         <mapping class="ru.job4j.hql.candidate.Candidate"/>
         <mapping class="ru.job4j.hql.student.Student"/>
         <mapping class="ru.job4j.toone.User"/>
         <mapping class="ru.job4j.toone.Role"/>
         <mapping class="ru.job4j.many.UserToMany"/>
         <mapping class="ru.job4j.many.RoleToMany"/>
+        <mapping class="ru.job4j.oneToMany.Brand"/>
+        <mapping class="ru.job4j.oneToMany.Car"/>
     </session-factory>
 </hibernate-configuration>

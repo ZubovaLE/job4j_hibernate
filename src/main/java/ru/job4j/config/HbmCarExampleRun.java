@@ -8,7 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.sql.Timestamp;
 
-public class HbmRun {
+public class HbmCarExampleRun {
     public static void main(String[] args) {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure()
@@ -19,7 +19,7 @@ public class HbmRun {
                     .buildSessionFactory();
             Session session = sf.openSession();
             session.beginTransaction();
-            Car car = Car.of("Toyota", new Timestamp(1459510232000L), "Sidorov Ivan");
+            CarExample car = CarExample.of("Toyota", new Timestamp(1459510232000L), "Sidorov Ivan");
             session.save(car);
             session.getTransaction().commit();
             session.close();

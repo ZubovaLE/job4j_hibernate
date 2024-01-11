@@ -1,10 +1,9 @@
-package ru.job4j.config;
+package ru.job4j.oneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Objects;
 
 @Getter
@@ -16,14 +15,10 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String model;
-    private Timestamp created;
-    private String owner;
 
-    public static Car of(String model, Timestamp created, String owner) {
+    public static Car of(String model) {
         Car car = new Car();
         car.model = model;
-        car.created = created;
-        car.owner = owner;
         return car;
     }
 

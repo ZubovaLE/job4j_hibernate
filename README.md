@@ -20,6 +20,13 @@ The main tasks that I have to complete:
 - [x] Consider the ManyToOne
   relationship ([click](https://github.com/ZubovaLE/job4j_hibernate/tree/master/src/main/java/ru/job4j/toone)
 - [x] Consider the OneToMany
-  relationship ([click](https://github.com/ZubovaLE/job4j_hibernate/tree/master/src/main/java/ru/job4j/many))
+  relationship ([click](https://github.com/ZubovaLE/job4j_hibernate/tree/master/src/main/java/ru/job4j/oneToMany))
+  - consider Unidirectional connection  
+    brands table:
+    ![brands_table](images/brands_table.png)
+    cars table:
+    ![cars_table](images/cars_table.png)
+    brands_cars table:
+    ![brands_cars_table](images/brands_cars_table.png)
 - [ ] Consider the ManyToMany relationship
 - [ ] Consider the LazyInitializationexception 
