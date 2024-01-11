@@ -28,6 +28,10 @@ public class RoleToMany {
         return role;
     }
 
+    public void addUser(UserToMany u) {
+        this.users.add(u);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

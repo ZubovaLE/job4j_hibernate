@@ -6,7 +6,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class HbmRun {
+public class HbmRunToMany {
     public static void main(String[] args) {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
@@ -15,12 +15,11 @@ public class HbmRun {
             Session session = sf.openSession();
             session.beginTransaction();
 
-            UserToMany one = UserToMany.of("Bob");
-            UserToMany two = UserToMany.of("Alex");
+            UserToMany one = UserToMany.of("Petr");
+            session.save(one);
 
-            RoleToMany admin = RoleToMany.of("ADMIN");
-            admin.getUsers().add(one);
-            admin.getUsers().add(two);
+            RoleToMany admin = RoleToMany.of("ADMIN_1");
+            admin.addUser(session.load(UserToMany.class, 1));
 
             session.save(admin);
 
