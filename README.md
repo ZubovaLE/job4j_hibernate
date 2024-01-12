@@ -18,15 +18,23 @@ The main tasks that I have to complete:
     - learn DELETE queries
     - learn INSERT queries
 - [x] Consider the ManyToOne
-  relationship ([click](https://github.com/ZubovaLE/job4j_hibernate/tree/master/src/main/java/ru/job4j/toone)
+  relationship ([click](https://github.com/ZubovaLE/job4j_hibernate/tree/master/src/main/java/ru/job4j/toone))
 - [x] Consider the OneToMany
   relationship ([click](https://github.com/ZubovaLE/job4j_hibernate/tree/master/src/main/java/ru/job4j/oneToMany))
-  - consider Unidirectional connection  
-    brands table:
-    ![brands_table](images/brands_table.png)
-    cars table:
-    ![cars_table](images/cars_table.png)
-    brands_cars table:
-    ![brands_cars_table](images/brands_cars_table.png)
-- [ ] Consider the ManyToMany relationship
+    - consider Unidirectional connection  
+      brands table:  
+      ![brands_table](images/1_brands_table.png)  
+      cars table:  
+      ![cars_table](images/2_cars_table.png)  
+      brands_cars table:  
+      ![brands_cars_table](images/3_brands_cars_table.png)
+- [x] Consider the ManyToMany
+  relationship ([click](https://github.com/ZubovaLE/job4j_hibernate/tree/master/src/main/java/ru/job4j/manyToMany))
+    - consider Unidirectional connection  
+      addresses table:  
+      ![addresses_table](images/4_addresses_table.png)  
+      persons table:  
+      ![persons_table](images/5_persons_table.png)  
+      persons_addresses table:  
+      ![persons_addresses_table](images/6_persons_addresses_table.png)
 - [ ] Consider the LazyInitializationexception 
