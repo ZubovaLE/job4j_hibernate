@@ -1,12 +1,14 @@
-package ru.job4j.manyToMany;
+package ru.job4j.manyToMany.authorsAndBooks;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import ru.job4j.manyToMany.personsAndAddresses.Address;
+import ru.job4j.manyToMany.personsAndAddresses.Person;
 
-public class ManyToManyHbmRun {
+public class AuthorsAndBooksHbmRun {
     public static void main(String[] args) {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
         try {
@@ -14,17 +16,17 @@ public class ManyToManyHbmRun {
             Session session = sf.openSession();
             session.beginTransaction();
 
-            Address one = Address.of("Kazanskaya", "1");
-            Address two = Address.of("Piterskaya", "10");
+            Book one = Book.of("Tom 1");
+            Book two = Book.of("Tom 2");
             session.save(one);
             session.save(two);
 
-            Person first = Person.of("Bob");
-            first.addAddress(one);
-            first.addAddress(two);
+            Author first = Author.of("M.J.Collins");
+            first.addBook(one);
+            first.addBook(two);
 
-            Person second = Person.of("Alex");
-            second.addAddress(two);
+            Author second = Author.of("K.L.Poll");
+            second.addBook(two);
 
             session.persist(first);
             session.persist(second);

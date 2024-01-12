@@ -1,4 +1,4 @@
-package ru.job4j.manyToMany;
+package ru.job4j.manyToMany.personsAndAddresses;
 
 import lombok.Getter;
 import lombok.Setter;

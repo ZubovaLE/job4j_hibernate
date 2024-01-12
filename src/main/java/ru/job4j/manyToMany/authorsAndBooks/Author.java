@@ -1,4 +1,4 @@
-package ru.job4j.manyToMany;
+package ru.job4j.manyToMany.authorsAndBooks;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,32 +11,32 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "persons")
-public class Person {
+@Table(name = "authors")
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Address> addresses = new HashSet<>();
-
-    public static Person of(String name) {
-        Person person = new Person();
-        person.name = name;
-        return person;
+    public static Author of(String name) {
+        Author author = new Author();
+        author.name = name;
+        return author;
     }
 
-    public void addAddress(Address address) {
-        this.addresses.add(address);
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Book> books = new HashSet<>();
+
+    public void addBook(Book book) {
+        this.books.add(book);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return id == person.id;
+        Author author = (Author) o;
+        return id == author.id;
     }
 
     @Override

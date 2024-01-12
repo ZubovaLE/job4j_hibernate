@@ -24,7 +24,7 @@
         <mapping class="ru.job4j.many.RoleToMany"/>
         <mapping class="ru.job4j.oneToMany.Brand"/>
         <mapping class="ru.job4j.oneToMany.Car"/>
-        <mapping class="ru.job4j.manyToMany.Address"/>
-        <mapping class="ru.job4j.manyToMany.Person"/>
+        <mapping class="ru.job4j.manyToMany.personsAndAddresses.Address"/>
+        <mapping class="ru.job4j.manyToMany.personsAndAddresses.Person"/>
     </session-factory>
 </hibernate-configuration>
