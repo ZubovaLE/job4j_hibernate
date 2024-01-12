@@ -5,8 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import ru.job4j.manyToMany.personsAndAddresses.Address;
-import ru.job4j.manyToMany.personsAndAddresses.Person;
 
 public class AuthorsAndBooksHbmRun {
     public static void main(String[] args) {
@@ -16,20 +14,31 @@ public class AuthorsAndBooksHbmRun {
             Session session = sf.openSession();
             session.beginTransaction();
 
-            Book one = Book.of("Tom 1");
-            Book two = Book.of("Tom 2");
-            session.save(one);
-            session.save(two);
+            Author one = Author.of("Author 1");
+            Author two = Author.of("Author 2");
+            Author three = Author.of("Author 3");
+            session.persist(one);
+            session.persist(two);
+            session.persist(three);
 
-            Author first = Author.of("M.J.Collins");
-            first.addBook(one);
-            first.addBook(two);
+            Book first = Book.of("Book 1");
+            first.addAuthor(one);
+            first.addAuthor(two);
+            first.addAuthor(three);
 
-            Author second = Author.of("K.L.Poll");
-            second.addBook(two);
+            Book second = Book.of("Book 2");
+            second.addAuthor(two);
+            second.addAuthor(three);
+
+            Book third = Book.of("Book 3");
+            third.addAuthor(two);
 
             session.persist(first);
             session.persist(second);
+            session.persist(third);
+
+//            Book book = session.get(Book.class, 3);
+//            session.remove(book);
 
             session.getTransaction().commit();
             session.close();

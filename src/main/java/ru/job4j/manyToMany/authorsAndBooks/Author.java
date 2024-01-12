@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -22,13 +20,6 @@ public class Author {
         Author author = new Author();
         author.name = name;
         return author;
-    }
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Book> books = new HashSet<>();
-
-    public void addBook(Book book) {
-        this.books.add(book);
     }
 
     @Override

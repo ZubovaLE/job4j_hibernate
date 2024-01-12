@@ -30,11 +30,18 @@ The main tasks that I have to complete:
       ![brands_cars_table](images/3_brands_cars_table.png)
 - [x] Consider the ManyToMany
   relationship ([click](https://github.com/ZubovaLE/job4j_hibernate/tree/master/src/main/java/ru/job4j/manyToMany))
-    - consider Unidirectional connection  
+    - consider Unidirectional connection (persons-addresses)  
       addresses table:  
       ![addresses_table](images/4_addresses_table.png)  
       persons table:  
       ![persons_table](images/5_persons_table.png)  
       persons_addresses table:  
       ![persons_addresses_table](images/6_persons_addresses_table.png)
+    - consider Unidirectional connection (books-authors)  
+      authors table:  
+      ![authors_table](images/7_authors_table.png)  
+      books table:  
+      ![books_table](images/8_books_table.png)  
+      books_authors table:  
+      ![books_authors_table](images/9_books_authors_table.png)
 - [ ] Consider the LazyInitializationexception 
