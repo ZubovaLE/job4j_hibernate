@@ -28,5 +28,7 @@
         <mapping class="ru.job4j.manyToMany.personsAndAddresses.Person"/>
         <mapping class="ru.job4j.manyToMany.authorsAndBooks.Author"/>
         <mapping class="ru.job4j.manyToMany.authorsAndBooks.Book"/>
+        <mapping class="ru.job4j.lazy.CarBrand"/>
+        <mapping class="ru.job4j.lazy.CarModel"/>
     </session-factory>
 </hibernate-configuration>
