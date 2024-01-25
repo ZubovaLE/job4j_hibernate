@@ -44,4 +44,4 @@ The main tasks that I have to complete:
       ![books_table](images/8_books_table.png)  
       books_authors table:  
       ![books_authors_table](images/9_books_authors_table.png)
-- [ ] Consider the LazyInitializationexception 
+- [x] Consider the LazyInitializationexception 

@@ -19,6 +19,8 @@
         <mapping class="ru.job4j.config.CarExample"/>
         <mapping class="ru.job4j.hql.candidate.Candidate"/>
         <mapping class="ru.job4j.hql.student.Student"/>
+        <mapping class="ru.job4j.hql.student.Account"/>
+        <mapping class="ru.job4j.hql.student.AccountBook"/>
         <mapping class="ru.job4j.toone.User"/>
         <mapping class="ru.job4j.toone.Role"/>
         <mapping class="ru.job4j.many.UserToMany"/>
