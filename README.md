@@ -44,4 +44,7 @@ The main tasks that I have to complete:
       ![books_table](images/8_books_table.png)  
       books_authors table:  
       ![books_authors_table](images/9_books_authors_table.png)
-- [x] Consider the LazyInitializationexception 
+- [x] Consider the LazyInitializationexception
+- [x] Consider select
+  fetch ([click](https://github.com/ZubovaLE/job4j_hibernate/tree/master/src/main/java/ru/job4j/hql/candidates))
+  ![img.png](images/10_select_fetch.png)

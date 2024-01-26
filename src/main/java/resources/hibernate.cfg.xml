@@ -18,6 +18,8 @@
         <property name="use_sql_comments">true</property>
         <mapping class="ru.job4j.config.CarExample"/>
         <mapping class="ru.job4j.hql.candidate.Candidate"/>
+        <mapping class="ru.job4j.hql.candidate.VacancyBase"/>
+        <mapping class="ru.job4j.hql.candidate.Vacancy"/>
         <mapping class="ru.job4j.hql.student.Student"/>
         <mapping class="ru.job4j.hql.student.Account"/>
         <mapping class="ru.job4j.hql.student.AccountBook"/>

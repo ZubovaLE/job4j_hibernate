@@ -1,8 +1,13 @@
 package ru.job4j.hql.candidate;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "candidates")
 public class Candidate {
@@ -12,6 +17,10 @@ public class Candidate {
     private String name;
     private int experience;
     private double salary;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vacancy_base_id")
+    private VacancyBase vacancyBase;
 
     public static Candidate of(String name, int experience, double salary) {
         Candidate candidate = new Candidate();
@@ -36,6 +45,7 @@ public class Candidate {
 
     @Override
     public String toString() {
-        return String.format("Candidate: id=%d, name=%s, experience=%d, salary=%f", id, name, experience, salary);
+        return String.format("Candidate: id=%d, name=%s, experience=%d, salary=%f, vacancyBase=%s", id, name,
+                experience, salary, vacancyBase);
     }
 }
