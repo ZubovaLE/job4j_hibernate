@@ -1,5 +1,6 @@
 package ru.job4j.lazy;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,11 +11,13 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "car_brands")
 public class CarBrand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private int id;
     private String name;
 
@@ -25,19 +28,6 @@ public class CarBrand {
         CarBrand brand = new CarBrand();
         brand.name = name;
         return brand;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CarBrand carBrand = (CarBrand) o;
-        return id == carBrand.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 
     @Override

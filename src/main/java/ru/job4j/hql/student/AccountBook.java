@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "accbooks")
 public class AccountBook {
