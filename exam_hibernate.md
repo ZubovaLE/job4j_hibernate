@@ -4,7 +4,7 @@
 
 1. [Что такое ORM?](#1-Что-такое-ORM)
 2. [Опиши, как конфигурируется Hibernate. Рассказать про hibernate.cfg.xml и про mapping.](#2-Опиши-как-конфигурируется-Hibernate-Рассказать-про-hibernate-cfg-xml-и-про-mapping)
-3. [Жизненный цикл Entiity.](#3-Жизненный-цикл-Entiity)
+3. [Жизненный цикл Entity.](#3-Жизненный-цикл-Entity)
 4. [Зачем нужен класс SessionFactory? Является ли он потокобезопасным?](#4-Зачем-нужен-класс-SessionFactory-Является-ли-он-потокобезопасным)
 5. [Зачем нужен класс Session? Является ли он потокобезопасным?](#5-Зачем-нужен-класс-Session?-Является-ли-он-потокобезопасным)
 6. [В чем отличие методов Session.get Session.load?](#6-В-чем-отличие-методов-Session-get-Session-load)
@@ -16,25 +16,65 @@
 12. [Какие коллекции поддерживаются на уровне mapping?](#12-Какие-коллекции-поддерживаются-на-уровне-mapping)
 13. [Зачем нужен класс Transactional?](#13-Зачем-нужен-класс-Transactional)
 14. [Расскажите про уровни изоляции? Какие уровни поддерживаются в hibernate? Как их устанавливать?](#14-Расскажите-про-уровни-изоляции-Какие-уровни-поддерживаются-в-hibernate-Как-их-устанавливать)
-15. [Что такое OplimisticLock? Расскажите стратегии создания через version, timestamp.](#)
-16. [Расскажите про стратегии извлечения данных urgy, lazy?](#)
-17. [Что такое объект Proxy? С чем связана ошибка LazyInitializationException? Как ее избежать?](#)
-18. [HQL. Расскажи основные элементы синтаксиса HQL? Простой запрос, запрос join? Создания объекта через конструктор.](#)
-19. [Расскажите про уровни кешей в Hibernate?](#)
-20. [Что такое StatelessSessionFactory? Зачем он нужен, где он используется?](#)
-21. [Зачем нужен режим read-only?](#)
+15. [Что такое OplimisticLock? Расскажите стратегии создания через version, timestamp.](#15-Что-такое-OplimisticLock-Расскажите-стратегии-создания-через-version-timestamp)
+16. [Расскажите про стратегии извлечения данных urgy, lazy?](#16-Расскажите-про-стратегии-извлечения-данных-urgy-lazy)
+17. [Что такое объект Proxy? С чем связана ошибка LazyInitializationException? Как ее избежать?](#17-Что-такое-объект-Proxy-С-чем-связана-ошибка-LazyInitializationException-Как-ее-избежать)
+18. [HQL. Расскажи основные элементы синтаксиса HQL? Простой запрос, запрос join? Создания объекта через конструктор.](#18-HQL-Расскажи-основные-элементы-синтаксиса-HQL-Простой-запрос-запрос-join-Создания-объекта-через-конструктор)
+19. [Расскажите про уровни кешей в Hibernate?](#19-Расскажите-про-уровни-кешей-в-Hibernate)
+20. [Что такое StatelessSessionFactory? Зачем он нужен, где он используется?](#20-Что-такое-StatelessSessionFactory-Зачем-он-нужен-где-он-используется)
+21. [Зачем нужен режим read-only?](#21-Зачем-нужен-режим-read-only)
 
 ## 1 Что такое ORM?
 
 ORM (англ. Object-Relational Mapping, рус. объектно-реляционное отображение, или преобразование) — технология
 программирования, которая связывает базы данных с концепциями объектно-ориентированных языков программирования,
+
 [К оглавлению &#8593;](#Оглавление)
 
 ## 2 Опиши, как конфигурируется Hibernate. Рассказать про hibernate.cfg.xml и про mapping.
 
+Конфигурация осуществляется с помощью файла настроек hibernate.cfg.xml, который размещается в папке resources. Пример
+файла:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/example</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">password</property>
+        <property name="hibernate.connection.pool_size">1</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="use_sql_comments">true</property>
+
+        <mapping class="ru.job4j.example.Example"/>
+    </session-factory>
+</hibernate-configuration>
+```
+
+В тегах <property> прописываются необходимые настройки.  
+К примеру, благодаря включению свойства `<property name="show_sql">` мы можем в консоли увидеть те запросы к базе
+данных, которые выполняет Hibernate.
+
+Свойство `<property name="hibernate.hbm2ddl.auto">update</property>` отвечает за генерацию структуры таблиц в БД,
+значение update говорит о том, что в случае различия фактического состояния структуры таблицы и той, которая необходима
+для работы, Hibernate самостоятельно изменит структуру таблицы. Кроме того, Hibernate создаст таблицу, если при запуске
+кода таблицы вообще не будет в БД.
+
+Кроме того, Hibernate требует перечисления всех проаннотированных классов в конфигурации, поэтому мы
+используем `<mapping class="ru.job4j.example.Example"/>`
+
 [К оглавлению &#8593;](#Оглавление)
 
-## 3 Жизненный цикл Entiity.
+## 3 Жизненный цикл Entity.
 
 [К оглавлению &#8593;](#Оглавление)
 
@@ -133,6 +173,70 @@ get() загружает данные сразу при вызове, в то в
 [К оглавлению &#8593;](#Оглавление)
 
 ## 19 Расскажите про уровни кешей в Hibernate?
+
+Hibernate поддерживает три уровня кэширования:
+
+- Кеширование на уровне сессии (Session) (First-level cache)
+- Кеширование на уровне SessionFactory (Second-level cache)
+- Кеширование запросов (и их результатов) (Query cache)
+
+Hibernate по умолчанию всегда использует **кеширование на уровне сессии**, и его нельзя отключить. Данный вид
+кеширования самый простой (его еще называют **кэшем первого уровня**) и реализован на уровне Hibernate-сессии. Например,
+если сделать два одинаковых запроса в сессии:
+
+```
+Example example1 = session.get(Example.class,4);
+Example example2 = session.get(Example.class,4);
+
+assertTrue(example1 == example2);
+```
+
+После первого запроса в базу объект Example будет закэширован. И после повторного запрос объекта в той же сессии
+Hibernate вернет тот же Java-объект, т.е. ссылки на объекты будут идентичными. При использовании методов save(),
+update(), saveOrUpdate(), load(), get(), list(), iterate() и scroll() всегда будет задействован кэш первого уровня.
+
+**Кэш второго уровня** привязан к объекту SessionFactory, а значит, видимость объектов в этом кэше гораздо шире, чем в
+кэше первого уровня.
+
+```
+Session session = factory.openSession(); 
+Example example1 = session.get(Example.class, 4); 
+session.close();
+
+Session session = factory.openSession(); 
+Example example2 = session.get(Example.class, 4); 
+session.close();
+
+assertTrue(example1 != example2); 
+assertTrue(example1.equals(example2));
+```
+
+В этом примере будет выполнено два запроса в базу. Hibernate вернет идентичные объекты, но это будет не тот же объект —
+они будут иметь разные ссылки.
+
+Кэширование второго уровня по умолчанию отключено. Поэтому мы имеем два запроса к базе вместо одного. Чтобы включить кэш
+второго уровня, нужно в файле hibernate.cfg.xml прописать следующие свойства:
+
+```
+<property name="hibernate.cache.use_second_level_cache" value="true"/>
+<property name="hibernate.cache.provider_class" value="net.sf.ehcache.hibernate.SingletEhCacheProvider"/>
+```
+
+После чего поведение Hibernate изменится:
+
+```
+Session session = factory.openSession();
+Example example1 = session.get(Example.class, 4);
+session.close();
+
+Session session = factory.openSession();
+Example example2 = session.get(Example.class, 4);
+session.close();
+
+assertTrue(example1 == example2);
+```
+
+Таким образом, в примере выше будет выполнен только один запрос в базу.
 
 [К оглавлению &#8593;](#Оглавление)
 
