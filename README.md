@@ -48,3 +48,5 @@ The main tasks that I have to complete:
 - [x] Consider select
   fetch ([click](https://github.com/ZubovaLE/job4j_hibernate/tree/master/src/main/java/ru/job4j/hql/candidates))
   ![img.png](images/10_select_fetch.png)
+- [x] Add answers to exam([click](https://github.com/ZubovaLE/job4j_hibernate/blob/master/exam_hibernate.md)
+ 
